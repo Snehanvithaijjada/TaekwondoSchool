@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClassType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClassStartTime" Type="varchar" MaxLength="50" />
+    <Property Name="ClassEndTime" Type="varchar" MaxLength="50" />
+    <Property Name="ClassDay" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fee">
+    <Key>
+      <PropertyRef Name="FeeID" />
+    </Key>
+    <Property Name="FeeID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClassID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaymentDate" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDescription" Type="varchar" MaxLength="100" />
+    <Property Name="ProductCostPrice" Type="varchar" MaxLength="50" />
+    <Property Name="ProductSellingPrice" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rank">
+    <Key>
+      <PropertyRef Name="RankID" />
+    </Key>
+    <Property Name="RankID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BeltColor" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RankHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RankID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RankDate" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentMobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="varchar" MaxLength="50" />
+    <Property Name="Houseno" Type="varchar" MaxLength="50" />
+    <Property Name="StreetName" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfJoining" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentAttendance">
+    <Key>
+      <PropertyRef Name="AttendanceID" />
+    </Key>
+    <Property Name="AttendanceID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClassID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AttendanceTakenDate" Type="varchar" MaxLength="50" />
+    <Property Name="IsPresent" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentFamily">
+    <Key>
+      <PropertyRef Name="ParentID" />
+    </Key>
+    <Property Name="ParentID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentID" Type="varchar" MaxLength="50" />
+    <Property Name="FatherFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FatherLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MotherFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MotherLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentPhoneNo" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Fee_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fee_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fee_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rankhistory_Rank">
+    <End Role="Rank" Type="Self.Rank" Multiplicity="1" />
+    <End Role="RankHistory" Type="Self.RankHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rank">
+        <PropertyRef Name="RankID" />
+      </Principal>
+      <Dependent Role="RankHistory">
+        <PropertyRef Name="RankID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rankhistory_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="RankHistory" Type="Self.RankHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="RankHistory">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Studentattendance_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="StudentAttendance" Type="Self.StudentAttendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="StudentAttendance">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Studentattendance_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentAttendance" Type="Self.StudentAttendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentAttendance">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFamily_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentFamily" Type="Self.StudentFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentFamily">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rank" EntityType="Self.Rank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RankHistory" EntityType="Self.RankHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentAttendance" EntityType="Self.StudentAttendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentFamily" EntityType="Self.StudentFamily" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Fee_Class" Association="Self.FK_Fee_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Fee" EntitySet="Fee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fee_Product" Association="Self.FK_Fee_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Fee" EntitySet="Fee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fee_Student" Association="Self.FK_Fee_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Fee" EntitySet="Fee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rankhistory_Rank" Association="Self.FK_Rankhistory_Rank">
+      <End Role="Rank" EntitySet="Rank" />
+      <End Role="RankHistory" EntitySet="RankHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rankhistory_Student" Association="Self.FK_Rankhistory_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="RankHistory" EntitySet="RankHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Studentattendance_Class" Association="Self.FK_Studentattendance_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="StudentAttendance" EntitySet="StudentAttendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Studentattendance_Student" Association="Self.FK_Studentattendance_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentAttendance" EntitySet="StudentAttendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFamily_Student" Association="Self.FK_StudentFamily_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentFamily" EntitySet="StudentFamily" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

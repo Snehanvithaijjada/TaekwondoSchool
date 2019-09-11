@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FinalApp_SM.Models.StudentFamily>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<body style="background-color:lightcyan">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+   
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student.StudentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatherFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatherLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotherFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotherLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentPhoneNo)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.StudentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FatherFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FatherLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotherFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotherLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParentEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParentPhoneNo)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ParentID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ParentID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ParentID })
+                </td>
+            </tr>
+        }
+
+    </table>

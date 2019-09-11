@@ -1,0 +1,74 @@
+﻿@model FinalApp_SM.Models.StudentFamily
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StudentFamily</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotherFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotherFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotherLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotherLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentPhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentPhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ParentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

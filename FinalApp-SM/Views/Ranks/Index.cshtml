@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FinalApp_SM.Models.Rank>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<body style="background-color:lightcyan">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RankID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeltColor)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RankID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeltColor)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RankID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.RankID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RankID })
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FinalApp_SM.Models.RankHistory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<body style="background-color:aliceblue">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "RankHistories", FormMethod.Get))
+    {
+        <p align="center">
+            Enter Student ID:<input type="text" name="StudentID">
+            <button style="font-size=10px">Search</button>
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rank.BeltColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RankDate)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HistoryID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rank.BeltColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RankDate)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.HistoryID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.HistoryID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.HistoryID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <img src="~/images/belts.jpeg" width=" 15%" height="15%" align="top"/>

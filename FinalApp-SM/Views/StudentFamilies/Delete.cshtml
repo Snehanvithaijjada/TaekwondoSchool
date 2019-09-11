@@ -1,0 +1,80 @@
+﻿@model FinalApp_SM.Models.StudentFamily
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StudentFamily</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotherFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotherFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotherLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotherLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentPhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentPhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.FirstName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassStartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ClassEndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ClassDay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Fees" Relationship="Self.FK_Fee_Class" FromRole="Class" ToRole="Fee" />
+    <NavigationProperty Name="StudentAttendances" Relationship="Self.FK_Studentattendance_Class" FromRole="Class" ToRole="StudentAttendance" />
+  </EntityType>
+  <EntityType Name="Fee">
+    <Key>
+      <PropertyRef Name="FeeID" />
+    </Key>
+    <Property Name="FeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PaymentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_Fee_Class" FromRole="Fee" ToRole="Class" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Fee_Product" FromRole="Fee" ToRole="Product" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Fee_Student" FromRole="Fee" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProductCostPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductSellingPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Fees" Relationship="Self.FK_Fee_Product" FromRole="Product" ToRole="Fee" />
+  </EntityType>
+  <EntityType Name="Rank">
+    <Key>
+      <PropertyRef Name="RankID" />
+    </Key>
+    <Property Name="RankID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BeltColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RankHistories" Relationship="Self.FK_Rankhistory_Rank" FromRole="Rank" ToRole="RankHistory" />
+  </EntityType>
+  <EntityType Name="RankHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RankID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RankDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Rank" Relationship="Self.FK_Rankhistory_Rank" FromRole="RankHistory" ToRole="Rank" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Rankhistory_Student" FromRole="RankHistory" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentMobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Houseno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfJoining" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Fees" Relationship="Self.FK_Fee_Student" FromRole="Student" ToRole="Fee" />
+    <NavigationProperty Name="RankHistories" Relationship="Self.FK_Rankhistory_Student" FromRole="Student" ToRole="RankHistory" />
+    <NavigationProperty Name="StudentAttendances" Relationship="Self.FK_Studentattendance_Student" FromRole="Student" ToRole="StudentAttendance" />
+    <NavigationProperty Name="StudentFamilies" Relationship="Self.FK_StudentFamily_Student" FromRole="Student" ToRole="StudentFamily" />
+  </EntityType>
+  <EntityType Name="StudentAttendance">
+    <Key>
+      <PropertyRef Name="AttendanceID" />
+    </Key>
+    <Property Name="AttendanceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AttendanceTakenDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsPresent" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_Studentattendance_Class" FromRole="StudentAttendance" ToRole="Class" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Studentattendance_Student" FromRole="StudentAttendance" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="StudentFamily">
+    <Key>
+      <PropertyRef Name="ParentID" />
+    </Key>
+    <Property Name="ParentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FatherFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FatherLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MotherFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MotherLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_StudentFamily_Student" FromRole="StudentFamily" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK_Fee_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Studentattendance_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="StudentAttendance" Type="Self.StudentAttendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="StudentAttendance">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fee_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fee_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rankhistory_Rank">
+    <End Role="Rank" Type="Self.Rank" Multiplicity="1" />
+    <End Role="RankHistory" Type="Self.RankHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rank">
+        <PropertyRef Name="RankID" />
+      </Principal>
+      <Dependent Role="RankHistory">
+        <PropertyRef Name="RankID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rankhistory_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="RankHistory" Type="Self.RankHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="RankHistory">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Studentattendance_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentAttendance" Type="Self.StudentAttendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentAttendance">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFamily_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentFamily" Type="Self.StudentFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentFamily">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classes" EntityType="Self.Class" />
+    <EntitySet Name="Fees" EntityType="Self.Fee" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Ranks" EntityType="Self.Rank" />
+    <EntitySet Name="RankHistories" EntityType="Self.RankHistory" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="StudentAttendances" EntityType="Self.StudentAttendance" />
+    <EntitySet Name="StudentFamilies" EntityType="Self.StudentFamily" />
+    <AssociationSet Name="FK_Fee_Class" Association="Self.FK_Fee_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Fee" EntitySet="Fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Studentattendance_Class" Association="Self.FK_Studentattendance_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="StudentAttendance" EntitySet="StudentAttendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fee_Product" Association="Self.FK_Fee_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Fee" EntitySet="Fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fee_Student" Association="Self.FK_Fee_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Fee" EntitySet="Fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rankhistory_Rank" Association="Self.FK_Rankhistory_Rank">
+      <End Role="Rank" EntitySet="Ranks" />
+      <End Role="RankHistory" EntitySet="RankHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rankhistory_Student" Association="Self.FK_Rankhistory_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="RankHistory" EntitySet="RankHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Studentattendance_Student" Association="Self.FK_Studentattendance_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentAttendance" EntitySet="StudentAttendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFamily_Student" Association="Self.FK_StudentFamily_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentFamily" EntitySet="StudentFamilies" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
